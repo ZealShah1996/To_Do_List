@@ -8,13 +8,13 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/tasks/listoftasks', function(req, res) {
+router.get('/tasks/listoftasks/:todolistid', function(req, res) {
    res.sendfile(path.resolve('./views','listoftasks.html'),(err)=>{
     console.log(err);
   });
 });
 
-router.get('/tasks/listoftasks.js', function(req, res) {
+router.get('/tasks/listoftasks/listoftaskopen/listoftasks.js', function(req, res) {
   res.sendfile(path.resolve('./views','listoftasks.js'),(err)=>{
     console.log(err);
   });

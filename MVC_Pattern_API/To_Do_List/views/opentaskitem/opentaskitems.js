@@ -4,10 +4,12 @@ angular.module('itemtasksApp', ['ngSanitize'])
         this.listoftasks = [];
         this.requestSuccess = true;
         this.url = 'http://localhost:4000';
-        debugger;
+        
         this.id = $location.$$absUrl.split('/')[$location.$$absUrl.split('/').length - 1];
         this.editPage = 0;
-        this.TaskItem={"id":0,"name":"Name of task","task_text":"zealshah","todolist_id":this.id,"is_complete":false};
+        
+        this.DefaultTaskItem={"id":0,"name":"Name of task","task_text":"task details","todolist_id":this.id,"is_complete":false};
+        this.TaskItem=this.DefaultTaskItem;
         //    Our GET request function
         console.log("Getting all tasks items!!!!!");
         // let variable=$routeParams;
@@ -29,7 +31,7 @@ angular.module('itemtasksApp', ['ngSanitize'])
                     angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
                 }
             }, function errorCallback(response) {
-                debugger;
+                
                 console.log("Unable to perform get request");
                 console.log("all tasks items is not recevied!!!!!");
             });
@@ -76,30 +78,36 @@ angular.module('itemtasksApp', ['ngSanitize'])
 
 
         $scope.deleteRequest = (id) => {
-            debugger;
+            
             console.log("request for deleting id:-" + id);
             let url = `${this.url}/todolistsitem/delete/${id}`;
             let headers = { "requiredFields": "id,name,task_text" };
             let data = { "headers": headers }
             $http.delete(url, data).then(function (response) {
                 console.log(response);
+                $scope.getAll();
             }, function (response) {
                 console.log(response);
             });
         }
 
         $scope.editRequest = (id) => {
-            debugger;
             console.log("request for editing id:-" + id);
-            
             $http.get(`${this.url}/todolistsitem/todolist/${$scope.app.id}/todolistitem/${id}`,data)
             .then(function successCallback(response) {
                 if (response.data.length > 0) {
-                    $scope.app.TaskItem=response.data;
+                    Object.keys($scope.app.DefaultTaskItem).forEach((element)=>{
+                            if(Object.keys(response.data[0]).indexOf(element)==-1){
+                                response.data[0][element]=$scope.app.DefaultTaskItem[element];
+                            }
+                    });
+                    debugger;
+                    $scope.app.TaskItem=response.data[0];
                     // var temp = $compile($scope.app.listoftasks)($scope);
                     // angular.element(document.getElementById('taksitemtable')).append(temp);
                     // //  $scope.taksitemtable = temp;
                     // $scope.app.requestSuccess = true;
+                    
                     $scope.cerateToDoListItem();
                     console.log("able to perform get request");
                     console.log("all tasks items is recevied!!!!!");
@@ -108,19 +116,23 @@ angular.module('itemtasksApp', ['ngSanitize'])
                     angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
                 }
             }, function errorCallback(response) {
-                debugger;
+                
                 console.log("Unable to perform get request");
                 console.log("all tasks items is not recevied!!!!!");
             });
         }
 
         $scope.cerateToDoListItem = () => {
-            debugger;
+            
             $scope.app.editPage = 1;
         }
 
+        $scope.cerateToDoListItemForCreatingNew = () => { 
+            $scope.app.editPage = 1;
+            $scope.app.TaskItem=$scope.app.DefaultTaskItem;
+        }
         $scope.saveData = () => {
-            debugger;
+            
             let dataItem = $('#TaskItem').serializeArray();
             let data = {};
             dataItem.forEach(element => {
@@ -134,8 +146,37 @@ angular.module('itemtasksApp', ['ngSanitize'])
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
         }
+        if(data.id==0){
+            debugger;
             //let 
+            delete data.id;
             $http.post(`${this.url}/todolistsitem/create/0`,data)
+            .then(function successCallback(response) {
+                debugger;
+                if (response.data != undefined) {
+                    // $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+                    // var temp = $compile($scope.app.listoftasks)($scope);
+                    // angular.element(document.getElementById('taksitemtable')).append(temp);
+                    //  $scope.taksitemtable = temp;
+                    $scope.app.requestSuccess = true;
+                    console.log("able to perform get request");
+                    console.log("all tasks items is recevied!!!!!");
+                    $scope.getAll();
+                }
+                else {
+                    angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
+                }
+            }, function errorCallback(response) {
+                
+                console.log("Unable to perform get request");
+                console.log("all tasks items is not recevied!!!!!");
+            });
+
+        }
+        else if(data.id!=0){
+            debugger;
+            //let 
+            $http.patch(`${this.url}/todolistsitem/update/${data.id}`,data)
             .then(function successCallback(response) {
                 if (response.data.length > 0) {
                     $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
@@ -143,20 +184,52 @@ angular.module('itemtasksApp', ['ngSanitize'])
                     angular.element(document.getElementById('taksitemtable')).append(temp);
                     //  $scope.taksitemtable = temp;
                     $scope.app.requestSuccess = true;
-                    console.log("able to perform get request");
-                    console.log("all tasks items is recevied!!!!!");
+                   
+                    console.log("able to perform patch request");
+                    console.log("Update is successfull!!!!!");
+                    $scope.getAll();
                 }
                 else {
                     angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
                 }
             }, function errorCallback(response) {
-                debugger;
-                console.log("Unable to perform get request");
-                console.log("all tasks items is not recevied!!!!!");
+                
+                console.log("Unable to perform patch request");
+                console.log("Update is not successfull!!!!!");
             });
-
+        }
         }
 
+
+        $scope.getAll=()=>{
+            $scope.app.editPage = 0;
+            console.log("Getting all tasks items!!!!!");
+            // let variable=$routeParams;
+            // console.log(variable);
+            let headers = { "requiredFields": "id,name,task_text,is_active" };
+            let data = { "headers": headers };
+
+            $http.get(`${$scope.app.url}/todolistsitem/todolist/${$scope.app.id}`,data)
+                .then(function successCallback(response) {
+                    if (response.data.length > 0) {
+                        $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+                        var temp = $compile($scope.app.listoftasks)($scope);
+                        angular.element(document.getElementById('taksitemtable')).html("");
+                        angular.element(document.getElementById('taksitemtable')).append(temp);
+                        //  $scope.taksitemtable = temp;
+                        $scope.app.requestSuccess = true;
+                        console.log("able to perform get request");
+                        console.log("all tasks items is recevied!!!!!");
+                    }
+                    else {
+                        angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
+                    }
+                }, function errorCallback(response) {
+                    
+                    console.log("Unable to perform get request");
+                    console.log("all tasks items is not recevied!!!!!");
+                });
+        }
     });
 
 

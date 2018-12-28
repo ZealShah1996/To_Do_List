@@ -4,16 +4,44 @@
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
-    <script src="./listoftasks.js"></script>
+    <script src="./listoftaskopen/listoftasks.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
     <div ng-controller="indexCtrl as app">
+
         <center>
             <h2>Welcome to your to list dashboard!</h2>
+            <h2><u><a ng-click="cerateToDoListItemForCreatingNew()">Create a new item.</a></u></h2>
             <h2><u>List Of Tasks</u></h2>
-                <div compile="html" id="table" ng-bind-html="text">
+            <div ng-If="this.app.editPage == 0" compile="html" id="tasktable" ng-bind-html="text">
+            </div>
+            <div ng-If="this.app.editPage == 1">
+                <div>
+                    <form id="TaskItem">
+                        <input name="id" type="hidden" data-timepass1="{{this.app.TaskItem.id}}" placeholder="Name of task item"
+                            value="{{this.app.TaskItem.id}}" style="display:inline" />
+                        Name:- <input name="name" data-timepass1="{{this.app.TaskItem.name}}" type="text" placeholder="Name of task item"
+                            value="{{this.app.TaskItem.name}}" style="display:inline" />
+                        <input name="user_id" data-timepass1="{{this.app.TaskItem.user_id}}" type="hidden"
+                            value="{{this.app.TaskItem.user_id}}" />
+                        Task details:- <input name="task_text" data-timepass1="{{this.app.TaskItem.task_text}}" style="display:inline"
+                            type="text" placeholder="Details of item" value="{{this.app.TaskItem.task_text}}" />
+                        <input name="is_complete" data-timepass1="{{this.app.TaskItem.is_complete}}" type="hidden"
+                            value="{{this.app.TaskItem.is_complete}}" />
+                        <button ng-click="saveData()">Create To do list task</button>
+                    </form>
                 </div>
+            </div>
         </center>
     </div>
 </body>

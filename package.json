@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install && npm run start",
+    "start": "git submodule init && git submodule update && git submodule update --remote Mongo_Operations  && cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install && npm run withoutdebug ",
+    "After_Some_Change_debug": "cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install && npm  start ",
+    "After_Some_Change": "cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install && npm run withoutdebug ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/ZealShah1996/To_Do_List/issues"
   },
-  "homepage": "https://github.com/ZealShah1996/To_Do_List#readme"
+  "homepage": "https://github.com/ZealShah1996/To_Do_List#readme",
+  "dependencies": {
+    "mongoose-auto-increment": "^5.0.1"
+  }
 }

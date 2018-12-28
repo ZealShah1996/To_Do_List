@@ -41,7 +41,7 @@ router.post('/login', async function(req, res) {
   else{
     res.status(401);
   }
-  await utilityService.response(res,{"data":JSON.stringify(data)});
+  await utilityService.response(res,JSON.stringify(data));
 });
 
 /**
@@ -59,7 +59,7 @@ router.post('/create/0', async function(req, res) {
  */
 router.patch('/update/:userid', async function(req, res) {
   let requiredFields=await utilityService.findRequiredFieldsFromHeaders(req,requiredFieldsForUpdate);
-  let updatedData=await mongoService.updateOne(modelName,{"id":req.params.userid,"is_deleted":false,"is_active":true},req.body,{"requiredFields":requiredFields});
+  let updatedData=await mongoService.updateOne(modelName,{"id":req.params.userid,"is_deleted":false,"is_active":true},req.body,{"requiredFields":requiredFields},next);
   res.contentType('application/json');
   await utilityService.response(res,JSON.stringify(updatedData));
 });

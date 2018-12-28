@@ -35,7 +35,8 @@ angular.module('angularApp', [])
                 .then(function successCallback(response) {
 
                     $scope.app.loginSuccess = 200;
-                    $scope.redirect('/tasks/listoftasks');
+                    debugger;
+                    $scope.redirect(`/tasks/listoftasks/${response.data[0].id}`);
                     console.log("Successfully POST-ed data");
                 }, function errorCallback(response) {
              

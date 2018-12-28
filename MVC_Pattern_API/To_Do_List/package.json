@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": " DEBUG='*Service,index,users,*' nodejs ./bin/www",
+    "start": " DEBUG='*Service,index,users,*' nodejs --nolazy --inspect-brk=9229 ./bin/www",
     "withoutdebug": " DEBUG='*Service,index,users,*' nodejs  ./bin/www",
     "start_mongoose": "DEBUG='mquery' nodejs ./bin/www"
   },
@@ -14,6 +14,7 @@
     "express": "~4.0.0",
     "jade": "~1.3.0",
     "mongoose": "^5.4.1",
+    "mongoose-auto-increment": "^5.0.1",
     "morgan": "~1.0.0",
     "static-favicon": "^1.0.2"
   }
