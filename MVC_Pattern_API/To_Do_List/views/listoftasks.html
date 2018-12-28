@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app="tasksApp">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+    <script src="./listoftasks.js"></script>
+</head>
+
+<body>
+    <div ng-controller="indexCtrl as app">
+        <center>
+            <h2>Welcome to your to list dashboard!</h2>
+            <h2><u>List Of Tasks</u></h2>
+                <div compile="html" id="table" ng-bind-html="text">
+                </div>
+        </center>
+    </div>
+</body>
+
+</html>

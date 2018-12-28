@@ -1,0 +1,14 @@
+#!/usr/bin/nodejs
+var debug = require('debug')('my-application');
+var app = require('../app');
+const services=require('./../../../Mongo_Operations');
+const configService=services.configService;
+const findKeyName=configService.findVariableAvaiableInConfiguration;
+
+
+
+app.set('port', process.env.PORT || 3000);
+
+var server = app.listen(findKeyName('port'),findKeyName('url'), function() {
+  console.log('Express server listening on port ' + server.address().port);
+});
