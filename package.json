@@ -1,0 +1,21 @@
+{
+  "name": "To_Do_List",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZealShah1996/To_Do_List.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZealShah1996/To_Do_List/issues"
+  },
+  "homepage": "https://github.com/ZealShah1996/To_Do_List#readme"
+}
