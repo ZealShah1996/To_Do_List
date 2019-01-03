@@ -22,8 +22,8 @@ angular.module('tasksApp', ['ngSanitize'])
       $http.get(`${$scope.app.url}/todolists/users/${$scope.app.id}`, data)
         .then(function successCallback(response) {
           debugger;
-          if (response.data.length > 0) {
-            $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+          if (response.data.data.length > 0) {
+            $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
             var temp = $compile($scope.app.listoftasks)($scope);
             angular.element(document.getElementById('tasktable')).html("");
             angular.element(document.getElementById('tasktable')).append(temp);
@@ -41,7 +41,7 @@ angular.module('tasksApp', ['ngSanitize'])
         });
       // $http.get(`${this.url}/todolists/users/1`)
       //   .then(function successCallback(response) {
-      //     $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+      //     $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
       //     $scope.text = $scope.app.listoftasks;
       //     $scope.app.requestSuccess = true;
       //     console.log("able to perform get request");
@@ -104,14 +104,14 @@ angular.module('tasksApp', ['ngSanitize'])
      // /todolists/users/1/todolist/6
       $http.get(`${this.url}/todolists/users/${$scope.app.id}/todolist/${id}`,data)
       .then(function successCallback(response) {
-          if (response.data.length > 0) {
+          if (response.data.data.length > 0) {
               Object.keys($scope.app.DefaultTaskItem).forEach((element)=>{
-                      if(Object.keys(response.data[0]).indexOf(element)==-1){
-                          response.data[0][element]=$scope.app.DefaultTaskItem[element];
+                      if(Object.keys(response.data.data[0]).indexOf(element)==-1){
+                          response.data.data[0][element]=$scope.app.DefaultTaskItem[element];
                       }
               });
               debugger;
-              $scope.app.TaskItem=response.data[0];
+              $scope.app.TaskItem=response.data.data[0];
               // var temp = $compile($scope.app.listoftasks)($scope);
               // angular.element(document.getElementById('taksitemtable')).append(temp);
               // //  $scope.taksitemtable = temp;
@@ -174,8 +174,8 @@ angular.module('tasksApp', ['ngSanitize'])
       $http.post(`${this.url}/todolists/create/0`,data)
       .then(function successCallback(response) {
           debugger;
-          if (response.data != undefined) {
-              // $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+          if (response.data.data != undefined) {
+              // $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
               // var temp = $compile($scope.app.listoftasks)($scope);
               // angular.element(document.getElementById('taksitemtable')).append(temp);
               //  $scope.taksitemtable = temp;
@@ -199,8 +199,8 @@ angular.module('tasksApp', ['ngSanitize'])
       //let 
       $http.patch(`${this.url}/todolists/update/${data.id}`,data)
       .then(function successCallback(response) {
-          if (response.data.length > 0) {
-              $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+          if (response.data.data.length > 0) {
+              $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
               var temp = $compile($scope.app.listoftasks)($scope);
               angular.element(document.getElementById('taksitemtable')).append(temp);
               //  $scope.taksitemtable = temp;

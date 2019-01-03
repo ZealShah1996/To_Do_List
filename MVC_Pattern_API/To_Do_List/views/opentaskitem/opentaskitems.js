@@ -18,8 +18,8 @@ angular.module('itemtasksApp', ['ngSanitize'])
         let data = { "headers": headers };
         $http.get(`${this.url}/todolistsitem/todolist/${$scope.app.id}`,data)
             .then(function successCallback(response) {
-                if (response.data.length > 0) {
-                    $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+                if (response.data.data.length > 0) {
+                    $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
                     var temp = $compile($scope.app.listoftasks)($scope);
                     angular.element(document.getElementById('taksitemtable')).append(temp);
                     //  $scope.taksitemtable = temp;
@@ -95,14 +95,14 @@ angular.module('itemtasksApp', ['ngSanitize'])
             console.log("request for editing id:-" + id);
             $http.get(`${this.url}/todolistsitem/todolist/${$scope.app.id}/todolistitem/${id}`,data)
             .then(function successCallback(response) {
-                if (response.data.length > 0) {
+                if (response.data.data.length > 0) {
                     Object.keys($scope.app.DefaultTaskItem).forEach((element)=>{
-                            if(Object.keys(response.data[0]).indexOf(element)==-1){
-                                response.data[0][element]=$scope.app.DefaultTaskItem[element];
+                            if(Object.keys(response.data.data[0]).indexOf(element)==-1){
+                                response.data.data[0][element]=$scope.app.DefaultTaskItem[element];
                             }
                     });
                     debugger;
-                    $scope.app.TaskItem=response.data[0];
+                    $scope.app.TaskItem=response.data.data[0];
                     // var temp = $compile($scope.app.listoftasks)($scope);
                     // angular.element(document.getElementById('taksitemtable')).append(temp);
                     // //  $scope.taksitemtable = temp;
@@ -153,8 +153,8 @@ angular.module('itemtasksApp', ['ngSanitize'])
             $http.post(`${this.url}/todolistsitem/create/0`,data)
             .then(function successCallback(response) {
                 debugger;
-                if (response.data != undefined) {
-                    // $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+                if (response.data.data != undefined) {
+                    // $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
                     // var temp = $compile($scope.app.listoftasks)($scope);
                     // angular.element(document.getElementById('taksitemtable')).append(temp);
                     //  $scope.taksitemtable = temp;
@@ -178,8 +178,8 @@ angular.module('itemtasksApp', ['ngSanitize'])
             //let 
             $http.patch(`${this.url}/todolistsitem/update/${data.id}`,data)
             .then(function successCallback(response) {
-                if (response.data.length > 0) {
-                    $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+                if (response.data.data.length > 0) {
+                    $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
                     var temp = $compile($scope.app.listoftasks)($scope);
                     angular.element(document.getElementById('taksitemtable')).append(temp);
                     //  $scope.taksitemtable = temp;
@@ -211,8 +211,8 @@ angular.module('itemtasksApp', ['ngSanitize'])
 
             $http.get(`${$scope.app.url}/todolistsitem/todolist/${$scope.app.id}`,data)
                 .then(function successCallback(response) {
-                    if (response.data.length > 0) {
-                        $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data);
+                    if (response.data.data.length > 0) {
+                        $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
                         var temp = $compile($scope.app.listoftasks)($scope);
                         angular.element(document.getElementById('taksitemtable')).html("");
                         angular.element(document.getElementById('taksitemtable')).append(temp);

@@ -15,8 +15,9 @@
             <input type="text" ng-if="app.loginSuccess != 200" ng-model="app.password" placeholder="Controller variable name" />
                 <br /><br />
             <button  ng-if="app.loginSuccess != 200" ng-click="postRequest()">Test Rest</button>
-            <h2 ng-if="app.loginSuccess == 200">User is logged in Successfully.{{}}</h2>
+            <h2 ng-if="app.loginSuccess == 200">User is logged in Successfully.</h2>
             <h2 ng-if="app.loginSuccess == 401">User login is not allowed.</h2>
+            <h2 ng-if="app.loginSuccess == 401">{{app.message}}</h2>
             <h2 ng-if="app.loginSuccess == 200">List Of Tasks.</h2>
             <h2 ng-if="app.loginSuccess == 200" ng-click="createToListRequest()"></button>
             <!-- <ul ng-if="app.tasksDataCame==true">

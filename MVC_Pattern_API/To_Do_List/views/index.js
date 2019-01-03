@@ -7,12 +7,13 @@ angular.module('angularApp', [])
         this.password = "";
         this.loginSuccess = 0;
         this.url = 'http://localhost:4000';
-        //$scope.app.listoftasks = response.data;
+        this.message="";
+        //$scope.app.listoftasks = response.data.data;
         this.listoftasks=[];
         this.tasksDataCame=false;
         // $http.get(`${this.url}/todolists`).
         // then(function(response) {
-        //     $scope.data = response.data;
+        //     $scope.data = response.data.data;
         // });
         //    Our GET request function
         // $scope.getRequest = function () {
@@ -36,12 +37,12 @@ angular.module('angularApp', [])
 
                     $scope.app.loginSuccess = 200;
                     debugger;
-                    $scope.redirect(`/tasks/listoftasks/${response.data[0].id}`);
+                    $scope.redirect(`/tasks/listoftasks/${response.data.data[0].id}`);
                     console.log("Successfully POST-ed data");
                 }, function errorCallback(response) {
              
                     $scope.app.loginSuccess = 401;
-                
+                $scope.app.message=response.data.message.loginfailedmessage;
                     console.log("POST-ing of data failed");
                 });
         };
@@ -59,7 +60,7 @@ angular.module('angularApp', [])
             $http.get(`${$scope.app.url}/todolists/users/1`)
                 .then(function successCallback(response) {
                     debugger;
-                    $scope.app.listoftasks = response.data;
+                    $scope.app.listoftasks = response.data.data;
                     $scope.app.tasksDataCame=true;
                     console.log("able to perform get request");
                     console.log("all tasks is recevied!!!!!");
