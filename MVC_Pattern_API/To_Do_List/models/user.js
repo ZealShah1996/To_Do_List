@@ -3,8 +3,7 @@ autoIncrement = require('mongoose-auto-increment');
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-mongoose.set('debug', true);
-
+//mongoose.set('debug', true);
 const services = require('./../../../Mongo_Operations');
 const debugService = services.debugService;
 const debug = debugService.debugConsole(__dirname, __filename);
