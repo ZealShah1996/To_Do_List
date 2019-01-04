@@ -28,6 +28,7 @@ angular.module('itemtasksApp', ['ngSanitize'])
                     console.log("all tasks items is recevied!!!!!");
                 }
                 else {
+                    angular.element(document.getElementById('taksitemtable')).html("");
                     angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
                 }
             }, function errorCallback(response) {
@@ -113,6 +114,7 @@ angular.module('itemtasksApp', ['ngSanitize'])
                     console.log("all tasks items is recevied!!!!!");
                 }
                 else {
+                    angular.element(document.getElementById('taksitemtable')).html("");
                     angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
                 }
             }, function errorCallback(response) {
@@ -164,6 +166,7 @@ angular.module('itemtasksApp', ['ngSanitize'])
                     $scope.getAll();
                 }
                 else {
+                    angular.element(document.getElementById('taksitemtable')).html("");
                     angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
                 }
             }, function errorCallback(response) {
@@ -190,6 +193,7 @@ angular.module('itemtasksApp', ['ngSanitize'])
                     $scope.getAll();
                 }
                 else {
+                    angular.element(document.getElementById('taksitemtable')).html("");
                     angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
                 }
             }, function errorCallback(response) {
@@ -222,6 +226,7 @@ angular.module('itemtasksApp', ['ngSanitize'])
                         console.log("all tasks items is recevied!!!!!");
                     }
                     else {
+                        angular.element(document.getElementById('taksitemtable')).html("");
                         angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
                     }
                 }, function errorCallback(response) {

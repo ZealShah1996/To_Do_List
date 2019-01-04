@@ -33,6 +33,7 @@ angular.module('tasksApp', ['ngSanitize'])
             console.log("all tasks items is recevied!!!!!");
           }
           else {
+            angular.element(document.getElementById('tasktable')).html("");
             angular.element(document.getElementById('tasktable')).append(`<p>No Data found.</p>`);
           }
         }, function errorCallback(response) {
@@ -121,6 +122,7 @@ angular.module('tasksApp', ['ngSanitize'])
               console.log("all tasks items is recevied!!!!!");
           }
           else {
+            angular.element(document.getElementById('tasktable')).html("");
               angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
           }
       }, function errorCallback(response) {
@@ -185,6 +187,7 @@ angular.module('tasksApp', ['ngSanitize'])
               $scope.getAll();
           }
           else {
+            angular.element(document.getElementById('tasktable')).html("");
               angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
           }
       }, function errorCallback(response) {
@@ -211,6 +214,7 @@ angular.module('tasksApp', ['ngSanitize'])
               $scope.getAll();
           }
           else {
+            angular.element(document.getElementById('tasktable')).html("");
               angular.element(document.getElementById('taksitemtable')).append(`<p>No Data found.</p>`);
           }
       }, function errorCallback(response) {
