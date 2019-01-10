@@ -7,9 +7,9 @@
     "start": "git submodule init && git submodule update && git submodule update --remote Mongo_Operations  && cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install  && npm run withoutdebug",
     "After_Some_Change_debug": "cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install && npm  start ",
     "After_Some_Change": "cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install && npm run withoutdebug ",
-    "test":"npm run api_test",
+    "test": "npm run api_test",
     "mongo_test": "cd Mongo_Operations/ && npm test",
-    "api_test":"cd MVC_Pattern_API/To_Do_List/ && npm test"
+    "api_test": "cd MVC_Pattern_API/To_Do_List/ && npm test"
   },
   "repository": {
     "type": "git",
