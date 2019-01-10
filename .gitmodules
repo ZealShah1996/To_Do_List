@@ -2,6 +2,6 @@
 	path = Mongo_Operations
 	url = https://github.com/ZealShah96/Mongo_Mangoose_helper.git
 
-[submodule "Mongo_Operations"]
+[submodule "angular6-example"]
 	path = ./MVC_Pattern_API/To_Do_List/views/angular6-example
 	url = https://github.com/ZealShah96/Dynamic-Angular-Page-For-Curd.git
