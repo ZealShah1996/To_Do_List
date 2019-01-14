@@ -14,7 +14,13 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', '*');
+    res.header('Access-Control-Allow-Headers', '*');
+   // Access-Control-Allow-Origin
+    next();
+});
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -30,6 +36,13 @@ try{
 catch(err){
 console.log('err');
 }
+
+
+/// catch 404 and forwarding to error handler
+
+
+
+
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
