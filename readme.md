@@ -1,6 +1,6 @@
 -----> Steps to run application:
 
-Please run mongod server first.
+Please run mongo server first by running below command.
 mongod
 
 Execute Following command after cloning project.
@@ -9,8 +9,9 @@ npm start
 npm test(optional for testing apis is working or not)
 
 ----->Steps to run front end:
-Please run mongod server first.
+Please run mongo server first by running below command.
 mongod
+
 
 Execute Following command in new terminal
 npm run start_frontEnd
