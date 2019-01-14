@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "git submodule init && git submodule update && git submodule update --remote Mongo_Operations  && cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install  && npm run withoutdebug",
+    "start": "git submodule init && git submodule update && git submodule update --remote Mongo_Operations  && cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/views/angular6-frontend/ && npm install && cd ../../ && npm install && npm run withoutdebug ",
+    "start_frontEnd":"cd MVC_Pattern_API/To_Do_List/ && npm run run_FrontEnd",
     "After_Some_Change_debug": "cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install && npm  start ",
     "After_Some_Change": "cd Mongo_Operations/ && npm install && cd ../MVC_Pattern_API/To_Do_List/ && npm install && npm run withoutdebug ",
     "test": "npm run api_test",

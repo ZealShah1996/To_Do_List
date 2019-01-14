@@ -4,6 +4,9 @@ cd To_Do_List/
 npm start
 npm test(optional for testing apis is working or not)
 
+----->Steps to run front end:
+Execute Following command in new terminal
+npm run start_frontEnd
 
 -----> This is for more development work if you change some thing in any code than follow below command to run project.
 (You need to be parent directory at ~/To_Do_List)

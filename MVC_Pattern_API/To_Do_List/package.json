@@ -7,6 +7,7 @@
     "start": "nodejs ./bin/www",
     "start_debug": " DEBUG='*Service,index,users,*' nodejs --nolazy --inspect-brk=9229 ./bin/www",
     "withoutdebug": " DEBUG='*Service,index,users,*' nodejs  ./bin/www",
+    "run_FrontEnd":"cd views/angular6-frontend/ && npm start",
     "start_mongoose": "DEBUG='mquery' nodejs ./bin/www"
   },
   "devDependencies": {
