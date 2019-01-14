@@ -36,7 +36,7 @@ angular.module('angularApp', [])
                 .then(function successCallback(response) {
 
                     $scope.app.loginSuccess = 200;
-                    debugger;
+                    
                     $scope.redirect(`/tasks/listoftasks/${response.data.data[0].id}`);
                     console.log("Successfully POST-ed data");
                 }, function errorCallback(response) {
@@ -59,13 +59,13 @@ angular.module('angularApp', [])
             console.log("Getting all tasks!!!!!");
             $http.get(`${$scope.app.url}/todolists/users/1`)
                 .then(function successCallback(response) {
-                    debugger;
+                    
                     $scope.app.listoftasks = response.data.data;
                     $scope.app.tasksDataCame=true;
                     console.log("able to perform get request");
                     console.log("all tasks is recevied!!!!!");
                 }, function errorCallback(response) {
-                    debugger;
+                    
                     console.log("Unable to perform get request");
                     console.log("all tasks is not recevied!!!!!");
                 });

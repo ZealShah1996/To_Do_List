@@ -102,7 +102,7 @@ angular.module('itemtasksApp', ['ngSanitize'])
                                 response.data.data[0][element]=$scope.app.DefaultTaskItem[element];
                             }
                     });
-                    debugger;
+                    
                     $scope.app.TaskItem=response.data.data[0];
                     // var temp = $compile($scope.app.listoftasks)($scope);
                     // angular.element(document.getElementById('taksitemtable')).append(temp);
@@ -149,12 +149,12 @@ angular.module('itemtasksApp', ['ngSanitize'])
             }
         }
         if(data.id==0){
-            debugger;
+            
             //let 
             delete data.id;
             $http.post(`${this.url}/todolistsitem/create/0`,data)
             .then(function successCallback(response) {
-                debugger;
+                
                 if (response.data.data != undefined) {
                     // $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
                     // var temp = $compile($scope.app.listoftasks)($scope);
@@ -177,7 +177,7 @@ angular.module('itemtasksApp', ['ngSanitize'])
 
         }
         else if(data.id!=0){
-            debugger;
+            
             //let 
             $http.patch(`${this.url}/todolistsitem/update/${data.id}`,data)
             .then(function successCallback(response) {

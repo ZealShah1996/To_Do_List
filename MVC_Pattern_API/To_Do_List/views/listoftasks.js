@@ -21,7 +21,7 @@ angular.module('tasksApp', ['ngSanitize'])
       let data = { "headers": headers };
       $http.get(`${$scope.app.url}/todolists/users/${$scope.app.id}`, data)
         .then(function successCallback(response) {
-          debugger;
+          
           if (response.data.data.length > 0) {
             $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
             var temp = $compile($scope.app.listoftasks)($scope);
@@ -48,7 +48,7 @@ angular.module('tasksApp', ['ngSanitize'])
       //     console.log("able to perform get request");
       //     console.log("all tasks is recevied!!!!!");
       //   }, function errorCallback(response) {
-      //     debugger;
+      //     
       //     console.log("Unable to perform get request");
       //     console.log("all tasks is not recevied!!!!!");
       //   });
@@ -111,7 +111,7 @@ angular.module('tasksApp', ['ngSanitize'])
                           response.data.data[0][element]=$scope.app.DefaultTaskItem[element];
                       }
               });
-              debugger;
+              
               $scope.app.TaskItem=response.data.data[0];
               // var temp = $compile($scope.app.listoftasks)($scope);
               // angular.element(document.getElementById('taksitemtable')).append(temp);
@@ -138,7 +138,7 @@ angular.module('tasksApp', ['ngSanitize'])
   $scope.cerateToDoListItemForCreatingNew = () => { 
       $scope.app.editPage = 1;
       $scope.app.TaskItem=$scope.app.DefaultTaskItem;
-      debugger;
+      
   }
 
     $scope.deleteRequest = (id) => {
@@ -170,12 +170,12 @@ angular.module('tasksApp', ['ngSanitize'])
       }
   }
   if(data.id==0){
-      debugger;
+      
       //let 
       delete data.id;
       $http.post(`${this.url}/todolists/create/0`,data)
       .then(function successCallback(response) {
-          debugger;
+          
           if (response.data.data != undefined) {
               // $scope.app.listoftasks = $scope.makeTableFromApiResponse(response.data.data);
               // var temp = $compile($scope.app.listoftasks)($scope);
@@ -198,7 +198,7 @@ angular.module('tasksApp', ['ngSanitize'])
 
   }
   else if(data.id!=0){
-      debugger;
+      
       //let 
       $http.patch(`${this.url}/todolists/update/${data.id}`,data)
       .then(function successCallback(response) {
