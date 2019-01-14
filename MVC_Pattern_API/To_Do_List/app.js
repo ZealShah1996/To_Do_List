@@ -21,6 +21,7 @@ app.use(function(req, res, next) {
    // Access-Control-Allow-Origin
     next();
 });
+
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
